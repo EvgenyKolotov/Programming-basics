@@ -1,4 +1,4 @@
-import { DoubleLinkedNode as LinkedNode, LinkedList } from "./types";
+import { DoubleLinkedNode as LinkedNode, LinkedList } from "../types";
 
 type LinkedNodeParam<T> = LinkedNode<T> | null;
 

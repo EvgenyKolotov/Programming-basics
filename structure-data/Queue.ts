@@ -1,4 +1,4 @@
-import { Queue as IQueue } from './types';
+import { Queue as IQueue } from '../types';
 
 class Queue<T> implements IQueue<T> {
   private queue: Array<T> = [];

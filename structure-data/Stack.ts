@@ -1,4 +1,4 @@
-import { Stack } from "./types";
+import { Stack } from "../types";
 import SingleLinkedList from './SingleLinkedList';
 
 class ArrayStack<T> implements Stack<T> {
