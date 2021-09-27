@@ -1,6 +1,14 @@
 export interface LinkedNode<T> {
 	value: T;
-	next: LinkedNode<T> | null;
+}
+
+export interface SingleLinkedNode<T> extends LinkedNode<T> {
+	next: SingleLinkedNode<T> | null;
+}
+
+export interface DoubleLinkedNode<T> extends LinkedNode<T> {
+	next: DoubleLinkedNode<T> | null;
+	previous: DoubleLinkedNode<T> | null;
 }
 
 export interface LinkedList<T> {
@@ -16,13 +24,18 @@ export interface LinkedList<T> {
 	size: () => number;
 }
 
-export interface DoubleLinkedNode<T> extends LinkedNode<T> {
-    previous: DoubleLinkedNode<T> | null;
-    next: DoubleLinkedNode<T> | null;
+export interface Stack<T> {
+	push: (value: T) => void;
+	pop: () => void;
+	peek: (value: T) => T;
+	isEmpty: () => boolean;
+	size: () => number;
 }
 
-export type LinkedNodeParam<T> = DoubleLinkedNode<T> | null;
-
-export interface DoubleLinkedList<T> extends LinkedList<T> {
-    findElement: (value: T) => DoubleLinkedNode<T> | undefined;
+export interface Queue<T> {
+	enqueue: (v: T) => void;
+	dequeue: () => void;
+	peek: () => T;
+	isEmpty: () => boolean;
+	size: () => number;
 }
