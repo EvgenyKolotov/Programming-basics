@@ -39,3 +39,5 @@ export interface Queue<T> {
 	isEmpty: () => boolean;
 	size: () => number;
 }
+
+export interface Sorting {}

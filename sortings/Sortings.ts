@@ -35,6 +35,27 @@ class Sorting {
 		}
 	}
 
+	// Сортировка подсчётом. Временная сложность: O(n^2);
+	public static countingSort(array: number[]): void {
+		let minimum = array[0];
+		let maximum = array[0];
+		for (let i = 0; i < array.length; i++) {
+			if (array[i] > maximum) maximum = array[i];
+			if (array[i] < minimum) minimum = array[i];
+		}
+		const bucket = new Array(maximum - minimum + 1).fill(0);
+		for (let i = 0; i < array.length; i++) {
+			bucket[array[i] - minimum]++;
+		}
+		array.length = 0;
+		for (let i = 0; i < bucket.length; i++) {
+			let count = bucket[i];
+			for (let j = 0; j < count; j++) {
+				array.push(i + minimum);
+			}
+		}
+	}
+
     // Сортировка Шелла. Временная сложность: О(n^3/2);
 	public static shellSort(array: number[]): void {
         let gap = 1;
@@ -62,6 +83,23 @@ class Sorting {
         return Sorting.merge(this.mergeSort(arrLeft), this.mergeSort(arrRight));
     }
 
+	// Быстрая сортировка. Временная сложность: О(N * log N);
+	public static quickSort(array: number[], left: number, right: number): number[] {
+		let index;
+
+		if (array.length > 1) {
+			index = Sorting.partition(array, left, right);
+			if (left < index - 1) {
+				Sorting.quickSort(array, left, index - 1);
+			}
+			if (index < right) {
+				Sorting.quickSort(array, index, right);
+			}
+		}
+
+		return array;
+	}
+
 	private static swap(array: number[], i: number, j: number): void {
 		if (i === j) return;
 		let temp = array[i];
@@ -81,5 +119,23 @@ class Sorting {
 		}
 
 		return [...arrSort, ...arrFirst.slice(i), ...arrSecond.slice(j)];
+	}
+
+	private static partition(array: number[], left: number, right: number): any {
+		const pivot = Math.floor((left + right) / 2);
+		while(left <= right) {
+			while(array[left] < pivot) {
+				left++;
+			}
+			while(array[right] > pivot) {
+				right--;
+			}
+			if (left <= right) {
+				Sorting.swap(array, left, right);
+				left++;
+				right--;
+			}
+		}
+		return left;
 	}
 }
